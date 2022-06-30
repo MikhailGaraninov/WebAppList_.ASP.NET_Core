@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,7 @@ namespace WebAppList.Controllers
 
 
         // GET: Tasks/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,6 +59,8 @@ namespace WebAppList.Controllers
         }
 
         // GET: Tasks/Create
+
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -65,6 +69,7 @@ namespace WebAppList.Controllers
         // POST: Tasks/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Task,Detail")] Tasks tasks)
@@ -79,6 +84,7 @@ namespace WebAppList.Controllers
         }
 
         // GET: Tasks/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,6 +103,7 @@ namespace WebAppList.Controllers
         // POST: Tasks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Task,Detail")] Tasks tasks)
@@ -130,6 +137,7 @@ namespace WebAppList.Controllers
         }
 
         // GET: Tasks/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,6 +156,7 @@ namespace WebAppList.Controllers
         }
 
         // POST: Tasks/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
